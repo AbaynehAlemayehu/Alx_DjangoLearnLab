@@ -1,0 +1,29 @@
+# 1. Ensure Python is installed
+python --version
+
+# 2. Install Django
+pip install django
+
+# 3. Create the Django project
+django-admin startproject LibraryProject
+
+# 4. Navigate into the project folder
+cd LibraryProject
+
+# 5. Create a non-empty README.md
+echo "# LibraryProject" > README.md
+echo "This is the initial setup for the LibraryProject Django application." >> README.md
+
+# 6. Run the development server to make sure everything works
+python manage.py runserver
+# Open http://127.0.0.1:8000/ to see the default Django welcome page
+
+# 7. Initialize Git and push to GitHub
+git init
+git add .
+git commit -m "Initial Django project setup with README.md"
+
+# Replace the URL below with your GitHub repository URL
+git remote add origin https://github.com/YOUR_USERNAME/Alx_DjangoLearnLab.git
+git branch -M main
+git push -u origin main
