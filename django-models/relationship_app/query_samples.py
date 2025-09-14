@@ -120,3 +120,5 @@ def run_queries(author, library):
 if __name__ == "__main__":
     author, library = create_sample_data()
     run_queries(author, library)
+python relationship_app/query_samples.py
+python relationship_app/query_samples.py
