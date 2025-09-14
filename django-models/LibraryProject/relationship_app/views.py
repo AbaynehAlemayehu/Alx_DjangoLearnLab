@@ -38,4 +38,20 @@ class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'  # ✅ Required
     context_object_name = 'library'
+from django.shortcuts import render
+from django.views.generic import DetailView   # ✅ Using DetailView
+from .models import Book, Library             # ✅ Import both models
+
+
+# Function-Based View
+def list_books(request):
+    books = Book.objects.all()
+    return render(request, 'relationship_app/list_books.html', {'books': books})
+
+
+# Class-Based View
+class LibraryDetailView(DetailView):          # ✅ Class-based view
+    model = Library
+    template_name = 'relationship_app/library_detail.html'  # ✅ Template for CBV
+    context_object_name = 'library'
 
