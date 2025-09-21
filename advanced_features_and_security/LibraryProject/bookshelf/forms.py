@@ -21,3 +21,29 @@ class BookForm(forms.ModelForm):
         if date and date > datetime.date.today():
             raise ValidationError("Published date cannot be in the future.")
         return date
+<!-- bookshelf/templates/bookshelf/form_example.html -->
+{% extends "base.html" %}
+{% block content %}
+  <h2>Create / Edit Book</h2>
+  <form method="post" action="{% url 'book_create' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+      <label for="{{ form.title.id_for_label }}">Title</label>
+      {{ form.title }}
+      {{ form.title.errors }}
+    </div>
+    <div>
+      <label for="{{ form.author.id_for_label }}">Author</label>
+      {{ form.author }}
+      {{ form.author.errors }}
+    </div>
+    <div>
+      <label for="{{ form.published_date.id_for_label }}">Published date</label>
+      {{ form.published_date }}
+      {{ form.published_date.errors }}
+    </div>
+
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}
