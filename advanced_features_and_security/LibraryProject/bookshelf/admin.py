@@ -1,13 +1,27 @@
+# accounts/admin.py
 from django.contrib import admin
-from .models import Book
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser
 
-@admin.register(Book)
-class BookAdmin(admin.ModelAdmin):
-    # Fields to display in the list view
-    list_display = ("title", "author", "publication_year")
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    list_display = ("username", "email", "date_of_birth", "is_staff", "is_active")
+    list_filter = ("is_staff", "is_active")
 
-    # Add filters in the sidebar
-    list_filter = ("author", "publication_year")
+    fieldsets = (
+        (None, {"fields": ("username", "email", "password", "date_of_birth", "profile_photo")}),
+        ("Permissions", {"fields": ("is_staff", "is_active", "is_superuser", "groups", "user_permissions")}),
+        ("Important dates", {"fields": ("last_login", "date_joined")}),
+    )
 
-    # Enable search functionality
-    search_fields = ("title", "author")
+    add_fieldsets = (
+        (None, {
+            "classes": ("wide",),
+            "fields": ("username", "email", "password1", "password2", "date_of_birth", "profile_photo", "is_staff", "is_active")}
+        ),
+    )
+
+    search_fields = ("email", "username")
+    ordering = ("email",)
+
+admin.site.register(CustomUser, CustomUserAdmin)
