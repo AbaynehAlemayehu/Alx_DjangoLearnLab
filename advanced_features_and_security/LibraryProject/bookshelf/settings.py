@@ -6,3 +6,6 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 # Make sure you have media settings for profile photos
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+# settings.py
+
+AUTH_USER_MODEL = "bookshelf.CustomUser"
