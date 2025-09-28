@@ -125,3 +125,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
 ]
+INSTALLED_APPS = [
+    ...,
+    'rest_framework',
+    'django_filters',   # ✅ required for advanced filtering
+    'api',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ]
+}
