@@ -90,3 +90,22 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('profile/edit/', views.profile_edit, name='profile_edit'),
 ]
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    # Home / Post list
+    path('', views.PostListView.as_view(), name='post-list'),
+
+    # Post detail
+    path('post/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
+
+    # Create new post
+    path('post/new/', views.PostCreateView.as_view(), name='post-create'),
+
+    # Update existing post
+    path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
+
+    # Delete a post
+    path('post/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete'),
+]
