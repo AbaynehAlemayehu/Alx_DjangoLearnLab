@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>{{ profile_user.username }}'s profile</h2>
+
+  {% if profile.avatar %}
+    <img src="{{ profile.avatar.url }}" alt="avatar" style="max-width:200px;">
+  {% endif %}
+
+  <p><strong>Username:</strong> {{ profile_user.username }}</p>
+  <p><strong>Email:</strong> {{ profile_user.email }}</p>
+  <p><strong>Bio:</strong> {{ profile.bio|linebreaks }}</p>
+
+  {% if request.user == profile_user %}
+    <p><a href="{% url 'blog:profile_edit' %}">Edit profile</a></p>
+  {% endif %}
+{% endblock %}
