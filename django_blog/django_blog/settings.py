@@ -175,6 +175,7 @@ MIDDLEWARE = [
 ]
 # ensure 'django.contrib.messages' in INSTALLED_APPS (default)
 INSTALLED_APPS = [
+   INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -182,4 +183,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'taggit',  # ✅ Added for tagging support
 ]
+
