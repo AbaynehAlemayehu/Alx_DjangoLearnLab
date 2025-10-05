@@ -44,3 +44,23 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'content': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Add a comment...'}),
         }
+from django import forms
+from .models import Post, Tag
+
+class PostForm(forms.ModelForm):
+    tags_input = forms.CharField(
+        required=False,
+        help_text='Comma-separated tags (e.g. django, tutorials)',
+        widget=forms.TextInput(attrs={'placeholder': 'Add tags separated by commas'})
+    )
+
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'tags_input']
+
+    def __init__(self, *args, **kwargs):
+        # optionally prefill tags_input when editing
+        instance = kwargs.get('instance', None)
+        super().__init__(*args, **kwargs)
+        if instance:
+            self.fields['tags_input'].initial = ', '.join([t.name for t in instance.tags.all()])
