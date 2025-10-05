@@ -138,3 +138,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'blog/static')]
 
 # Templates (already set up by default)
 TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'blog/templates')]
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blog_db',
+        'USER': 'postgres',
+        'PASSWORD': 'your_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
