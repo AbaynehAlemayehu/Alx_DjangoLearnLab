@@ -174,3 +174,12 @@ MIDDLEWARE = [
     # ...
 ]
 # ensure 'django.contrib.messages' in INSTALLED_APPS (default)
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'blog',
+]
