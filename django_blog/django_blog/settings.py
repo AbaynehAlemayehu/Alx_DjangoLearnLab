@@ -148,3 +148,29 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+# templates setting (ensure templates DIRS includes project templates if used)
+import os
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, "templates")]
+
+# Login / logout redirects
+LOGIN_REDIRECT_URL = "blog:post_list"
+LOGOUT_REDIRECT_URL = "blog:post_list"
+
+# media (for profile avatars)
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# static (if not already)
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "blog/static")]
+
+# messages framework - default enabled, but ensure middleware present
+MIDDLEWARE = [
+    # ... existing ...
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    # ...
+]
+# ensure 'django.contrib.messages' in INSTALLED_APPS (default)
