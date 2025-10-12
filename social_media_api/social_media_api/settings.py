@@ -138,3 +138,16 @@ REST_FRAMEWORK = {
 }
 AUTH_USER_MODEL = 'accounts.CustomUser'
 'posts',
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'rest_framework',
+    'rest_framework.authtoken',
+    'accounts',   # your accounts app
+    'posts',      # ✅ add this line
+]
