@@ -175,4 +175,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# Port number for deployment (useful for platforms like Heroku)
+PORT = os.environ.get('PORT', 8000)  # default to 8000 for local dev
 
