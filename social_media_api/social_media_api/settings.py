@@ -151,3 +151,27 @@ INSTALLED_APPS = [
     'accounts',   # your accounts app
     'posts',      # ✅ add this line
 ]
+# Turn off debug mode
+DEBUG = False
+
+# Add your production host(s)
+ALLOWED_HOSTS = ['Social-media-app.herokuapp.com', '127.0.0.1']
+
+# Security settings
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True  # only if using HTTPS
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ add
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    ...
+]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
