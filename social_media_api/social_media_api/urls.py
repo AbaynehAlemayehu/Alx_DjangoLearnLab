@@ -6,3 +6,4 @@ urlpatterns = [
     path('api/accounts/', include('accounts.urls')),  # routes to your accounts app
 ]
 path('api/', include('posts.urls')),
+path('api/notifications/', include('notifications.urls')),
