@@ -29,3 +29,19 @@ class CommentListCreateView(generics.ListCreateAPIView):
 from django.shortcuts import render
 
 # Create your views here.
+from rest_framework import generics, permissions
+from .models import Post
+from .serializers import PostSerializer
+
+class FeedView(generics.ListAPIView):
+    """
+    Returns posts from users that the current user follows, ordered by creation date (newest first).
+    """
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # Get the users that the current user is following
+        following_users = self.request.user.following.all()
+        # Return posts from those users, newest first
+        return Post.objects.filter(author__in=following_users).order_by('-created_at')
