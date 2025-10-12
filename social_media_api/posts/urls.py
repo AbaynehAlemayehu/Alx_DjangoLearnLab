@@ -14,3 +14,11 @@ urlpatterns = [
     path('posts/<int:post_id>/comments/', CommentListCreateView.as_view(), name='comments-list-create'),
     path('feed/', FeedView.as_view(), name='user-feed'),  # ✅ feed endpoint
 ]
+from rest_framework.routers import DefaultRouter
+from .views import PostViewSet, CommentViewSet
+
+router = DefaultRouter()
+router.register(r'posts', PostViewSet, basename='post')
+router.register(r'comments', CommentViewSet, basename='comment')
+
+urlpatterns = router.urls
